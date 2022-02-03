@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:vakinha_burguer_mobile/app/core/constants/constants.dart';
 import 'package:vakinha_burguer_mobile/app/core/mixins/loader_mixin.dart';
 import 'package:vakinha_burguer_mobile/app/core/mixins/messages_mixin.dart';
 import 'package:vakinha_burguer_mobile/app/core/rest_client/rest_client.dart';
@@ -30,16 +32,17 @@ class RegisterController extends GetxController
       required String password}) async {
     try {
       _loading.toggle();
-      final userModel = await _authRepository.register(name, email, password);
+      final userLogged = await _authRepository.register(name, email, password);
       _loading.toggle();
-      Get.back();
+      GetStorage().write(Constants.USER_KEY, userLogged.id);
+      /*Get.back();
       _message(MessageModel(
           title: 'Success',
           message: 'Registration successful',
-          type: MessageType.info));
+          type: MessageType.info));*/
     } on RestClientException catch (e, s) {
       _loading.toggle();
-      log('Error when registering user', error: e, stackTrace: s);
+      log('Error when registering user I', error: e, stackTrace: s);
       _message(MessageModel(
           title: 'Error', message: e.message, type: MessageType.error));
     } catch (e, s) {
@@ -47,7 +50,7 @@ class RegisterController extends GetxController
       log('Error when registering user', error: e, stackTrace: s);
       _message(MessageModel(
           title: 'Error',
-          message: 'Error when registering user',
+          message: 'Error when registering user II',
           type: MessageType.error));
     }
   }

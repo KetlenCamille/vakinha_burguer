@@ -25,7 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
       log(message, error: result.statusText, stackTrace: StackTrace.current);
       throw RestClientException(message: message);
     }
-    return UserModel.fromJson('source');
+    return login(email, password);
   }
 
   @override
