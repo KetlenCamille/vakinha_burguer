@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:vakinha_burguer_mobile/app/modules/home/home_bindings.dart';
 import 'package:vakinha_burguer_mobile/app/modules/product_detail/product_detail_bindings.dart';
 import 'package:vakinha_burguer_mobile/app/modules/product_detail/product_detail_page.dart';
 
